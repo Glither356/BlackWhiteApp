@@ -47,9 +47,6 @@ namespace BlackWhiteApp.Cods
             string answer;
             string fullAnswer;
 
-            string test = "gf";
-            test = "gfdhgd";
-
             var text = Encoding.UTF8.GetBytes("giveAP*&" + name + '\n');
 
             await stream.FlushAsync();
