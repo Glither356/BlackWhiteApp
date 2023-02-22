@@ -31,8 +31,8 @@ namespace BlackWhiteApp.Cods
         }
 
         public async static Task ConnectAsync() =>
-            //await _client.ConnectAsync("127.0.0.1", 8888);
-            await _client.ConnectAsync("", 8888);
+            //await _client.ConnectAsync("127.0.0.1", 8888); Your gay
+            await _client.ConnectAsync(" ", 8888);
 
         public async static Task Disconect() =>
             _client.Close();
@@ -46,6 +46,9 @@ namespace BlackWhiteApp.Cods
             string number;
             string answer;
             string fullAnswer;
+
+            string test = "gf";
+            test = "gfdhgd";
 
             var text = Encoding.UTF8.GetBytes("giveAP*&" + name + '\n');
 
