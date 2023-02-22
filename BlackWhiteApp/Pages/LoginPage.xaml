@@ -1,0 +1,60 @@
+﻿<Page x:Class="BlackWhiteApp.Pages.LoginPage"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlackWhiteApp"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="BlackWhite" Height="700" Width="1000" IsManipulationEnabled="False">
+
+    <Grid x:Name="Main" Background="#392f42"  >
+        <Border MinWidth="400" Background="#fff" Margin="150" Padding="30" CornerRadius="25">
+            <StackPanel>
+                <Border x:Name="Text">
+                    <TextBlock x:Name="HelloText" Text="Приветствую тебя!" FontSize="40" Margin="100,-20,0,70" FontWeight="Bold" Width="496" />
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="4" Color="Black" Opacity="0.25" ShadowDepth="4"/>
+                    </Border.Effect>
+                </Border>
+
+
+                <Grid>
+                    <TextBox
+                        x:Name="Name"
+                        FontSize="30"
+                        materialDesign:HintAssist.Hint="Ник"
+                        HorizontalAlignment="Left"
+                        Width="450"
+                        Margin="124,0,0,10" FontWeight="Bold"/>
+
+                    <Border>
+                        <Button
+                            Margin="124,119,175,-112"
+                            Content="Login"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Click="Button_Login_Click"/>
+
+                        <Border.Effect>
+                            <DropShadowEffect
+                                BlurRadius="5"
+                                Color="Black"
+                                ShadowDepth="4"
+                                Opacity="0.5"/>
+                        </Border.Effect>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="25" Color="LightGray" ShadowDepth="2"/>
+            </Border.Effect>
+
+
+
+        </Border>
+        <Frame x:Name="NextPage"/>
+    </Grid>
+</Page>

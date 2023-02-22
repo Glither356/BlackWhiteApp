@@ -1,0 +1,55 @@
+﻿<Page x:Class="BlackWhiteApp.Pages.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BlackWhiteApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="RegisterPage">
+
+    <Grid Background="#392f42">
+
+        <Border Height="400" Width="600">
+            <Rectangle
+                Fill="White"
+                RadiusX="50"
+                RadiusY="50"/>
+
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="25"
+                    Color="White"
+                    Opacity="0.7"/>
+            </Border.Effect>
+        </Border>
+
+        <TextBlock
+            Text="Регистрация"
+            FontSize="50"
+            FontWeight="Bold"
+            Foreground="Black"
+            Margin="336,150,0,0"
+            TextDecorations="Underline"/>
+
+        <TextBox
+            x:Name="EnterName"
+            Text=""
+            Margin="336,234,318,291"
+            FontSize="35"
+            FontWeight="Bold"
+            Foreground="Black"
+            RenderTransformOrigin="0.5, 0.5"/>
+
+        <Button
+            x:Name="regBtn"
+            Width="300"
+            Content="Получить код"
+            FontSize="20"
+            Margin="0 150 0 0"
+            Click="regBtn_Click"/>
+
+        <Frame x:Name="NextPage"/>
+    </Grid>
+
+</Page>
