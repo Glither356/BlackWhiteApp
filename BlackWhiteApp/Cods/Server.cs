@@ -32,7 +32,7 @@ namespace BlackWhiteApp.Cods
 
         public async static Task ConnectAsync() =>
             //await _client.ConnectAsync("127.0.0.1", 8888);
-            await _client.ConnectAsync("139.28.222.132", 8888);
+            await _client.ConnectAsync("", 8888);
 
         public async static Task Disconect() =>
             _client.Close();
