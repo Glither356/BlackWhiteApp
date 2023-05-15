@@ -10,6 +10,55 @@
 
     <Grid Background="#392f42">
 
+
+        <Grid x:Name="Error"
+              Visibility="Visible"
+              Margin="10,-578,43,593">
+
+            <Border
+                BorderThickness="3"
+                CornerRadius="22"
+                Background="#94030a"
+                Margin="613,592,0,0">
+            </Border>
+
+
+            <TextBlock
+                Text="Ошибка..."
+                Foreground="White"
+                FontSize="65"
+                FontWeight="Bold"
+                Margin="633,592,0,0"/>
+
+            <Line
+                X1="45" X2="70"
+                Y1="45" Y2="70"
+                StrokeThickness="3"
+                Stroke="White"
+                Margin="909,561,0,0"/>
+            
+            <Line
+                X1="45" X2="70"
+                Y1="45" Y2="70"
+                StrokeThickness="4"
+                Stroke="LightGray"
+                Margin="909,561,0,0"/>
+
+            <Line
+                X1="70" X2="44"
+                Y1="45" Y2="70"
+                StrokeThickness="4"
+                Stroke="LightGray"
+                Margin="909,561,0,0"/>
+
+            <Button
+                x:Name="CloseError"
+                Opacity="0"
+                Margin="936,596,10,54"
+                Click="CloseError_Click"/>
+
+        </Grid>
+
         <Line
             X1="200" X2="1000"
             Y1="120" Y2="120"
@@ -53,35 +102,55 @@
         </Grid>
 
         <TextBlock
-            Text="Личный счет"
+            Text="NAME"
+            Foreground="White"
             FontSize="70"
             FontWeight="Bold"
+            Margin="222,140,0,0"
+            TextDecorations="Underline"/>
+
+        <TextBlock
+            Text="Личный счет"
+            FontSize="60"
+            FontWeight="Bold"
             Foreground="White"
-            Margin="222,10,0,0"/>
+            Margin="222,26,240,0"/>
 
         <TextBlock
             x:Name="countOfAP"
             Text="0"
-            FontSize="70"
+            FontSize="50"
             FontWeight="Bold"
             Foreground="LightGray"
-            Margin="348,140,0,0"/>
+            Margin="321,237,0,0"/>
 
         <TextBlock
             Text="АР:"
-            FontSize="70"
+            FontSize="50"
             FontWeight="Bold"
             Foreground="LightGray"
-            Margin="222,140,0,0"/>
+            Margin="222,237,657,328"/>
 
-        <Button
-            Visibility="Hidden"
-            BorderBrush="Transparent"
-            Margin="222,140,609,334"
-            Content="Отправить АР"
-            FontSize="20"
-            Foreground="LightGray"
-            Background="Gray"/>
+        <Border>
+            <Button
+                Visibility="Visible"
+                BorderBrush="Transparent"
+                Margin="460,160,308,470"
+                Content="Отправить АР"
+                FontSize="26"
+                FontWeight="Bold"
+                Height="70"
+                Foreground="White"
+                Background="#342d3b"
+                Click="Button_Send_AP_Click"/>
+
+            <Border.Effect>
+                <DropShadowEffect
+                    BlurRadius="4"
+                    Opacity="0.6"
+                    ShadowDepth="6"/>
+            </Border.Effect>
+        </Border>
 
         <Grid x:Name="SendAPtoPlayer"
               Visibility="Hidden">
@@ -117,6 +186,7 @@
             </Border>
 
             <TextBox
+                x:Name="name"
                 Text="Ник"
                 FontSize="40"
                 FontWeight="ExtraLight"
@@ -124,6 +194,7 @@
                 Foreground="Gray"/>
 
             <TextBox
+                x:Name="numOFAP"
                 Text="Сумма"
                 FontSize="40"
                 FontWeight="ExtraLight"
@@ -137,7 +208,8 @@
                 Background="DarkGray"
                 Foreground="White"
                 Margin="248,454,170,196"
-                Height="50"/>
+                Height="50"
+                Click="Button_Accept_Send_AP_Click"/>
         </Grid>
         <Frame x:Name="NextPage"/>
     </Grid>

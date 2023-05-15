@@ -31,8 +31,7 @@ namespace BlackWhiteApp.Cods
         }
 
         public async static Task ConnectAsync() =>
-            //await _client.ConnectAsync("127.0.0.1", 8888); Your gay
-            await _client.ConnectAsync(" ", 8888);
+             await _client.ConnectAsync("139.28.222.132", 8888);
 
         public async static Task Disconect() =>
             _client.Close();
@@ -50,6 +49,7 @@ namespace BlackWhiteApp.Cods
             var text = Encoding.UTF8.GetBytes("giveAP*&" + name + '\n');
 
             await stream.FlushAsync();
+
             await stream.WriteAsync(text);
 
             while ((bytesRead = stream.ReadByte()) != '\n')
@@ -58,9 +58,8 @@ namespace BlackWhiteApp.Cods
             answer = Encoding.UTF8.GetString(response.ToArray());
             fullAnswer = Encoding.UTF8.GetString(response.ToArray());
 
-            answer = answer.Remove(answer.IndexOf('|'));
-
-            if(!(answer == "DIAMOND_ORES"))
+            if (answer != "DIAMOND_ORES"
+                && !answer.Contains('|'))
                 return 0;
 
             number = fullAnswer.Remove(0, fullAnswer.IndexOf('*') + 1);
@@ -69,8 +68,34 @@ namespace BlackWhiteApp.Cods
             return int.Parse(number);
         }
 
+        public static async Task<bool> sendOfAP(string nameSender, string nameRecipient, int countOfAP)
+        {
+            var stream = _client.GetStream();
+            var response = new List<byte>();
+
+            int bytesRead;
+            string answer;
+
+            var text = Encoding.UTF8.GetBytes("send*" + $";{nameRecipient}" + $"/{countOfAP}" + $"&{nameSender}" + '\n');
+
+            await stream.FlushAsync();
+
+            await stream.WriteAsync(text);
+
+            while ((bytesRead = stream.ReadByte()) != '\n')
+                response.Add((byte)bytesRead);
+
+            answer = Encoding.UTF8.GetString(response.ToArray());
+
+            if (answer == "send_accept-" + nameSender)
+                return true;
+
+            return false;
+        }
+
         public static async Task<bool> getLogin(string name)
         {
+
             _nick = name;
 
             var stream = _client.GetStream();
@@ -116,8 +141,6 @@ namespace BlackWhiteApp.Cods
                 response.Add((byte)bytesRead);
 
             answer = Encoding.UTF8.GetString(response.ToArray());
-
-            //return true;
 
             if (answer == $"Register&{name}*True")
                 return true;

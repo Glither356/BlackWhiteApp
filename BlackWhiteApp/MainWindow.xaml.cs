@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using BlackWhiteApp.Cods;
 using BlackWhiteApp.Pages;
 using System.IO;
+using System.Threading;
 
 namespace BlackWhiteApp
 {
@@ -27,12 +28,36 @@ namespace BlackWhiteApp
         public MainWindow()
         {
             InitializeComponent();
+
             Start();
         }
 
         private async void Start()
         {
-            NextPage.Content = new LoginPage();
+            string name;
+            string myExeDir = "name.txt";
+
+            await Server.ConnectAsync();
+
+            if (File.Exists(myExeDir))
+            {
+                name = File.ReadAllText(myExeDir);
+
+                bool yes = await Server.getLogin(name);
+
+                if (yes)
+                {
+                    File.WriteAllText(myExeDir, name);
+
+                    NextPage.Content = new Profile();
+                }
+                else
+                {
+                    NextPage.Content = new RegisterPage();
+                }
+            }
+            else
+                NextPage.Content = new RegisterPage();
         }
     }
 }

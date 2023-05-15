@@ -1,6 +1,7 @@
 ﻿using BlackWhiteApp.Cods;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,33 +22,18 @@ namespace BlackWhiteApp.Pages
     /// </summary>
     public partial class RegisterPage : Page
     {
-        private static string _name;
-
-        public static string name
-        {
-            get
-            {
-                return _name;
-            }
-        }
+        public static string name;
         
         public RegisterPage()
         {
             InitializeComponent();
-
-            connect();
-        }
-
-        private async void connect()
-        {
-            await Server.ConnectAsync();
         }
 
         private async void regBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                _name = EnterName.Text;
+                name = EnterName.Text;
             }
             catch (Exception)
             {
@@ -55,9 +41,12 @@ namespace BlackWhiteApp.Pages
                 return;
             }
 
-            bool reg = await Server.getRegiser(_name);
+            bool reg = await Server.getRegiser(name);
 
-            while (!reg) continue;
+            if (!reg)
+                return;
+
+            File.WriteAllText("name.txt", name);
 
             NextPage.Content = new Profile();
         }
